@@ -1,7 +1,7 @@
 ﻿body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-image: radial-gradient(circle, #8521c9, #ffa550);
+    color: #ffffff;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -10,22 +10,36 @@
     gap: 20px;
   }
   
+  .shared-search {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .shared-search input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+  }
+  
   .container {
     text-align: center;
-    background: white;
+    background: rgb(129, 129, 129);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px hsla(0, 0%, 0%, 0.700);
     width: 60%;
     max-width: 800px;
-  }
+}
+
   
   h1, h2 {
     margin-bottom: 20px;
   }
   
   [contenteditable] {
-    width: 100%;
+    width: 94%;
     height: 150px;
     padding: 15px;
     font-size: 18px;
@@ -33,6 +47,7 @@
     border-radius: 5px;
     overflow-y: auto;
     background: #fefefe;
+    white-space: pre-wrap;
   }
   
   [contenteditable]:focus {
@@ -43,11 +58,6 @@
   p {
     margin: 10px 0;
     font-size: 18px;
-  }
-  
-  #message1, #message2 {
-    color: #333;
-    font-weight: bold;
   }
   
   ul {

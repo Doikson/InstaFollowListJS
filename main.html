@@ -3,28 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detectar "'s" en Varios Recuadros</title>
+  <title>InstaFollowListJS</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Detectar y Guardar Párrafos con "'s"</h1>
-    <div id="textInput1" contenteditable="true" placeholder="Escribe algo aquí..."></div>
-    <p id="message1"></p>
-    <div>
-      <h2>Párrafos detectados:</h2>
-      <ul id="paragraphList1"></ul>
-    </div>
+  <div class="shared-search">
+    <label for="sharedSearchText">Insert the text that will be filtered here: </label>
+    <input id="sharedSearchText" type="text" placeholder="Insert your text here" />
   </div>
 
   <div class="container">
-    <h1>Detectar y Guardar Párrafos con "'s" 2</h1>
-    <div id="textInput2" contenteditable="true" placeholder="Escribe algo aquí..."></div>
+    <h1>Following:</h1>
+    <div id="textInput1" contenteditable="true"></div>
+    <p id="message1"></p>
+  </div>
+
+  <div class="container">
+    <h1>Followers:</h1>
+    <div id="textInput2" contenteditable="true"></div>
     <p id="message2"></p>
-    <div>
-      <h2>Párrafos detectados:</h2>
-      <ul id="paragraphList2"></ul>
-    </div>
+  </div>
+
+  <div class="container">
+    <button id="addParagraphsButton">Find Non-Mutual</button>
+    <h2>Non-Mutual Followers:</h2>
+    <ul id="coincidencesList"></ul>
   </div>
 
   <script src="script.js"></script>

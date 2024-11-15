@@ -1,43 +1,90 @@
 document.addEventListener('DOMContentLoaded', () => {
-    function setupTextInput(containerId, messageId, listId) {
-      const textInput = document.getElementById(containerId);
+    const sharedSearchInput = document.getElementById('sharedSearchText');
+    const coincidencesList = document.getElementById('coincidencesList');
+    const addParagraphsButton = document.getElementById('addParagraphsButton');
+  
+    // Lists of detected paragraphs
+    const paragraphsList1 = [];
+    const paragraphsList2 = [];
+  
+    // Setup for the first box
+    setupTextInput('textInput1', 'message1', paragraphsList1);
+  
+    // Setup for the second box
+    setupTextInput('textInput2', 'message2', paragraphsList2);
+  
+    // Generic setup to detect and store paragraphs
+    function setupTextInput(textInputId, messageId, detectedParagraphs) {
+      const textInput = document.getElementById(textInputId);
       const message = document.getElementById(messageId);
-      const paragraphList = document.getElementById(listId);
-      const detectedParagraphs = []; // Arreglo para guardar los párrafos
   
-      textInput.addEventListener('input', () => {
-        const inputValue = textInput.innerText.trim(); // Captura el texto plano y elimina espacios extra
-        const paragraphs = inputValue.split(/\n+/); // Divide el texto en párrafos
-        detectedParagraphs.length = 0; // Limpia la lista cada vez que se actualiza
+      // Updates paragraph detection
+      function updateDetection() {
+        const searchText = sharedSearchInput.value.trim();
+        const inputValue = textInput.innerText.trim();
+        const paragraphs = inputValue.split(/\n+/);
   
-        // Filtra los párrafos que contienen "'s"
+        detectedParagraphs.length = 0; // Clears the previous list
+  
+        if (searchText === "") {
+          message.textContent = "Please enter text to search for.";
+          message.style.color = "red";
+          return;
+        }
+  
         paragraphs.forEach(paragraph => {
-          if (paragraph.includes("'s")) {
+          if (paragraph.includes(searchText)) {
             detectedParagraphs.push(paragraph);
           }
         });
   
-        // Actualiza el mensaje
-        if (detectedParagraphs.length > 0) {
-          message.textContent = `Se encontraron ${detectedParagraphs.length} ${detectedParagraphs.length === 1 ? 'párrafo' : 'párrafos'} con "'s".`;
-          message.style.color = "green";
-        } else {
-          message.textContent = "No se encontraron párrafos con 's.";
-          message.style.color = "red";
-        }
+        // Updates the message
+        message.textContent = `Detected ${detectedParagraphs.length} ${detectedParagraphs.length === 1 ? 'paragraph' : 'paragraphs'}.`;
+        message.style.color = detectedParagraphs.length > 0 ? "green" : "red";
+      }
   
-        // Actualiza la lista de párrafos
-        paragraphList.innerHTML = '';
-        detectedParagraphs.forEach(paragraph => {
-          const listItem = document.createElement('li');
-          listItem.textContent = paragraph;
-          paragraphList.appendChild(listItem);
-        });
+      // Detects changes in the editable content
+      textInput.addEventListener('input', updateDetection);
+  
+      // Detects changes in the shared search text
+      sharedSearchInput.addEventListener('input', updateDetection);
+  
+      // Restrict pasting to plain text
+      textInput.addEventListener('paste', (event) => {
+        event.preventDefault();
+        const pastedText = (event.clipboardData || window.clipboardData).getData('text');
+        document.execCommand('insertText', false, pastedText);
       });
     }
   
-    // Configura los dos cuadros de texto independientes
-    setupTextInput('textInput1', 'message1', 'paragraphList1');
-    setupTextInput('textInput2', 'message2', 'paragraphList2');
-  });
+    // Function to add paragraphs and compare
+    addParagraphsButton.addEventListener('click', () => {
+      // Checks if there are paragraphs in the boxes
+      if (paragraphsList1.length === 0 || paragraphsList2.length === 0) {
+        alert('Make sure both boxes contain text.');
+        return;
+      }
   
+      // Clears the previous list of matches
+      coincidencesList.innerHTML = '';
+  
+      // Compare all paragraphs from box 1 with all paragraphs from box 2
+      paragraphsList1.forEach(paragraph1 => {
+        paragraphsList2.forEach(paragraph2 => {
+          if (paragraph1 === paragraph2) {
+            // If a match is found, add it to the list of matches
+            const listItem = document.createElement('li');
+            listItem.textContent = `Match: ${paragraph1}`;
+            coincidencesList.appendChild(listItem);
+          }
+        });
+      });
+  
+      // If no matches are found, show a message
+      if (coincidencesList.children.length === 0) {
+        const listItem = document.createElement('li');
+        listItem.textContent = "No matches were found between the boxes.";
+        coincidencesList.appendChild(listItem);
+      }
+    });
+});
