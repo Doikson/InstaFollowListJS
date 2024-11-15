@@ -1,0 +1,63 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    max-width: 800px;
+  }
+  
+  h1, h2 {
+    margin-bottom: 20px;
+  }
+  
+  [contenteditable] {
+    width: 100%;
+    height: 150px;
+    padding: 15px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    overflow-y: auto;
+    background: #fefefe;
+  }
+  
+  [contenteditable]:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+  
+  p {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  
+  #message1, #message2 {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  ul {
+    text-align: left;
+    font-size: 16px;
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
