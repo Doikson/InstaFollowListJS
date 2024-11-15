@@ -2,5 +2,5 @@
 ## Built on HTML, CSS, JS
 ### [Try Insta Follow List Js Edition](https://doikson.github.io/InstaFollowListJS/)
 
-### In honor of another project
-#### [Try Insta Follow List Py Edition]([https://doikson.github.io/InstaFollowListJS](https://github.com/Doikson/InstaFollowListPy])
+## In honor of this other project
+### [Insta Follow List Py Edition](https://doikson.github.io/InstaFollowListPy/)
