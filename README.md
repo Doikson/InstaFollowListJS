@@ -3,4 +3,4 @@
 ### [Try Insta Follow List Js Edition](https://doikson.github.io/InstaFollowListJS/)
 
 ### In honor of another project
-#### [Try Insta Follow List Py Edition]([https://doikson.github.io/InstaFollowListJS](https://github.com/Doikson/InstaFollowListPy))
+#### [Try Insta Follow List Py Edition]([https://doikson.github.io/InstaFollowListJS](https://github.com/Doikson/InstaFollowListPy])
