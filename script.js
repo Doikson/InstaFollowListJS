@@ -87,5 +87,14 @@ document.addEventListener("DOMContentLoaded", () => {
       listItem.textContent = "No matches were found between the boxes.";
       coincidencesList.appendChild(listItem);
     }
+
+    // Clear All button functionality
+    clearAllButton.addEventListener("click", () => {
+      document.getElementById("textInput1").innerText = "";
+      document.getElementById("textInput2").innerText = "";
+      sharedSearchInput.value = "";
+      coincidencesList.innerHTML = ""; // Clear the list of matches
+    });
+    
   });
 });
